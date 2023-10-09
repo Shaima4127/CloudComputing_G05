@@ -3,11 +3,11 @@ Project in Cloud Computing Course
 
 ### The project consists of three parts:
 1. PHP code files: 
-  - index.php
-  - submit.php
+    - index.php
+    - submit.php
 2. Docker files:
-   - dockerfile
-   - docker-compose.yaml
+    - dockerfile
+    - docker-compose.yaml
 3. kubernetes files:
    /kubernetes_deployment
    - mysql-deployment.yaml
