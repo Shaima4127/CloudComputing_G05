@@ -1,0 +1,18 @@
+version: '3'
+services:
+  php:
+    build: .
+    ports:
+      - "8088:80"  # port mapping for external access
+    volumes:
+      - ./index.php:/var/www/html/index.php
+      - ./submit.php:/var/www/html/submit.php
+      - app-sqldata:/var/www/html/data   # Mount the volume in the php container
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: contacts
+
+volumes:
+  app-sqldata:   # Define the volume name 'app-sqldata'

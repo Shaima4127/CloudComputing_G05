@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password"
+            - name: MYSQL_DATABASE
+              value: "contacts"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: app-sqldata
+              #              mountPath: /var/lib/mysql
+              mountPath: /var/www/html/data  # Mount the PVC to this path
+      volumes:
+          - name: app-sqldata
+            persistentVolumeClaim:
+              claimName: mysql-pvc
